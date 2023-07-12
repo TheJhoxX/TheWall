@@ -1,0 +1,22 @@
+.contenedor-formulario-publicar {
+    margin: 2rem;
+    width: 40%;
+    max-height: 33vh;
+}
+
+.formulario-publicar {
+    border-radius: 20px;
+    box-shadow: 2px 4px 15px rgb(0,0,0,0.5);
+    min-height: 100%;
+}
+
+
+.custom-file-input {
+    background-color: rgb(35, 42, 44); 
+    color: #fff;
+}
+
+.boton-publicar-post {
+    background-color: #D8315B !important;
+    cursor: pointer;
+}

@@ -1,24 +1,36 @@
-const { model } = require('mongoose')
-const Users = require('./User')
+const pool = require('./conexion')
 
-
-
-const Usuario = {
-    //Creacion de un usuario
-    create: async (req,res) => {
-        const usuario = new Users(req.body)
-        const usuarioGuardado = await usuario.save()
-        res.status(201).send('Usuario registrado correctamente: ' + usuarioGuardado._id)
-    },
-    list: async (req,res) => {
-        const users = await Users.find();
-        res.status(200).send(users);
-    },
-    get: async(req,res) => {
-		const { id } = req.params;
-		const usuario = await Users.findOne({ _id: id })
-		res.status(200).send('USUARIO: ' + usuario);
-	},
+function comprobarCredenciales(callback,body){
 }
 
-module.exports = Usuario
+function crearUsuario(callback, body) {
+    pool.query('INSERT INTO usuarios (nombre,password,correo,genero,fechaNacimiento) VALUES (?,?,?,?,?)',
+        [body.nombre, body.password, body.correo, body.genero, new Date(body.fechaNacimiento)], (error, results, fields) => {
+            if (error) {
+                callback(error, null);
+            } else {
+                callback(null, {
+                    "nombre": body.nombre,
+                    "correo": body.correo,
+                    "genero": body.genero,
+                    "fecha de nacimiento": body.fechaNacimiento
+                });
+            }
+        });
+}
+
+function mostrarUsuarios(callback) {
+    pool.query('SELECT * FROM usuarios', (error, results, fields) => {
+        if (error) {
+            callback(error, null);
+        } else {
+            callback(null, results);
+        }
+    });
+}
+
+module.exports = {
+    comprobarCredenciales,
+    crearUsuario,
+    mostrarUsuarios
+}

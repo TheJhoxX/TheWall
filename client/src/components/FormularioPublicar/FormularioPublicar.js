@@ -72,9 +72,6 @@ function FormularioPublicar(args){
                             <Input style={styles.input} type="textarea" rows={3} id='contenido-post' innerRef={inputRef2}/>
                         </InputGroup>
                     </FormGroup>
-                    <FormGroup style={styles.labelInput}>
-                            <Input style={styles.input} type="file" id='boton-imagen'  />
-                    </FormGroup>
                     <Badge
                     pill
                     className='boton-publicar-post'

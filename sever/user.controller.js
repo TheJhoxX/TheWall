@@ -10,6 +10,7 @@ function crearUsuario(callback, body) {
                 callback(error, null);
             } else {
                 callback(null, {
+                    "id": results.insertId,
                     "nombre": body.nombre,
                     "correo": body.correo,
                     "genero": body.genero,

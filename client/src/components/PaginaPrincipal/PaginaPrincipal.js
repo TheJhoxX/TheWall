@@ -4,15 +4,23 @@ import Posts from '../Posts/Posts'
 import FormularioPublicar from '../FormularioPublicar/FormularioPublicar'
 
 
-
 class PaginaPrincipal extends Component {
     state = {
-        posts:  [
-            { autor: 'Pepe', tema: 'experiencias', contenido: 'ayer me tire a una madurita jas iauhudsiuahi sdaisuhd iahsdi uadi uhaidshi aisudh iuahsidhu iauhsdi uhaisuhdi uahsdi uahsid iaushd  aisduhaisud hiauhsd iaudhiau hsidaushdi ausdhi uhasiduh aiushd iausdi hu aisdhuaisduh iausdhi auhsdi ausdh iauhds iaus asdfa sdfasdfa asdf asdf asdf asd asdf asdf asdf asdf iagdig asidughi zidg zdgiuhi idufgh idgfi uzdg izdufghi zuhgiz gzidhfg idughi zuhg izdughz idgfhu' },
-            { autor: 'Manolete', tema: 'experiencias', contenido: 'Ayer fui de cariñosonas' },
-            { autor: 'Felipe', tema: 'puterios', contenido: 'Ayer fui de cariñosonas' }
-        ]
+        posts: []
     }
+
+    componentDidMount() {
+        fetch('/posts')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                this.setState({ posts: data });
+            })
+            .catch(error => {
+                console.error('Error al obtener los posts:', error);
+            });
+    }
+
     render(){
         const publicarPost = (post) => {
             console.log('SE HA INSERTADO EL POST: ' + post)

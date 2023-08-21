@@ -1,11 +1,14 @@
 .App {
   background-color: rgb(0,0,0,0);
-  background-image: url('../public/backgroundImage.svg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
   flex-direction: column;
+}
+
+body {
+  background-color: #373E40;
 }
 
 html {

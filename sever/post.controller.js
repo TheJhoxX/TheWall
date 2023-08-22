@@ -8,6 +8,7 @@ function publicarPost(callback, body) {
             } else {
                 callback(null, {
                     "id": results.insertId,
+                    "idUsuario": body.idUsuario,
                     "tema": body.tema,
                     "contenido": body.contenido,
                 });

@@ -32,7 +32,7 @@ function Post (args) {
             }}>
             <CardBody>
                 <CardTitle tag="h5" className='autor-post'>
-                    {elemento.autor}
+                    {elemento.idUsuario}
                 </CardTitle>
                 <CardSubtitle
                 className="tema-post"

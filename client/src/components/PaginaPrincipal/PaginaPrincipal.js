@@ -13,7 +13,6 @@ class PaginaPrincipal extends Component {
         fetch('http://localhost:3001/posts')
             .then(response => response.json())
             .then(data => {
-                console.log(data)
                 this.setState({ posts: data });
             })
             .catch(error => {
@@ -29,7 +28,16 @@ class PaginaPrincipal extends Component {
                   'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(post),
+            }).then(response => response.json())
+            .then(data => {
+                var newPosts = [data, ...this.state.posts];
+                this.setState({posts: newPosts})
+                alert('Post publicado correctamente')
             })
+            .catch(error => {
+                console.error('Error al publicar el post:', error);
+            });
+    
         }
 
         return(

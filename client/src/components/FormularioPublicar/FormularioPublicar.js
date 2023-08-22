@@ -34,10 +34,9 @@ function FormularioPublicar(args){
     const inputRef2 = useRef(null);  
 
     const handlerClick = () => {
-        console.log('Se llega al click')
         const tema = inputRef1.current.value
         const contenido = inputRef2.current.value
-        const post = {autor: 'Usuario loggeado', tema: tema, contenido: contenido}
+        const post = {idUsuario: 1, tema: tema, contenido: contenido}
         publicarPost(post)
     }
 

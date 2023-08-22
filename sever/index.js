@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors'); // Importa el paquete cors
 const userController = require('./user.controller')
 const postController = require('./post.controller')
 
@@ -6,8 +7,10 @@ const PORT = 3001;
 
 const app = express()
 app.use(express.json())
+app.use(cors())
 
 app.post('/publicarPost', async (req,res) => {
+  console.log('SE VA A PUBLICAR EL POST: ' + JSON.stringify(req.body))
   postController.publicarPost((error,resultados) => {
     if (error) {
       res.status(500).send('Error al publicar post: ' + error);

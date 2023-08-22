@@ -11,8 +11,8 @@ CREATE TABLE IF NOT EXISTS usuarios (
     genero ENUM('hombre', 'mujer', 'otro') NOT NULL,
     fechaNacimiento DATE NOT NULL,
     PRIMARY KEY (id),
-    PRIMARY KEY (nombre),
-    PRIMARY KEY (correo)
+    UNIQUE (nombre),
+    UNIQUE (correo)
 );
 
 CREATE TABLE IF NOT EXISTS posts (
@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS posts (
     idUsuario INT NOT NULL,
     tema VARCHAR(20) NOT NULL,
     contenido VARCHAR(150) NOT NULL,
+    momento TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
     FOREIGN KEY (idUsuario) REFERENCES usuarios(id)
 );
@@ -29,6 +30,7 @@ CREATE TABLE IF NOT EXISTS respuestas (
     idUsuario INT NOT NULL,
     idPostRespuesta INT NOT NULL,
     contenido VARCHAR(150) NOT NULL,
+    momento TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
     FOREIGN KEY (idUsuario) REFERENCES usuarios(id),
     FOREIGN KEY (idPostRespuesta) REFERENCES posts(id)

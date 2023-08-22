@@ -16,7 +16,7 @@ function publicarPost(callback, body) {
 }
 
 function obtenerPosts(callback){
-    pool.query('SELECT * FROM posts', (error, results, fields) => {
+    pool.query('SELECT * FROM posts ORDER BY momento DESC', (error, results, fields) => {
         if (error) {
             callback(error, null);
         } else {

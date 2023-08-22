@@ -10,7 +10,7 @@ class PaginaPrincipal extends Component {
     }
 
     componentDidMount() {
-        fetch('/posts')
+        fetch('http://localhost:3001/posts')
             .then(response => response.json())
             .then(data => {
                 console.log(data)
@@ -23,9 +23,13 @@ class PaginaPrincipal extends Component {
 
     render(){
         const publicarPost = (post) => {
-            console.log('SE HA INSERTADO EL POST: ' + post)
-            var newPosts = this.state.posts.concat(post)
-            this.setState({posts: newPosts})
+            fetch('http://localhost:3001/publicarPost', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(post),
+            })
         }
 
         return(

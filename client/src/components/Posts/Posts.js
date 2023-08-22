@@ -7,7 +7,7 @@ function Posts(args) {
     return (
         <div className='contenedor-posts'>
         {posts.map((x) => (
-            <Post key={x.autor} elemento={x}/>
+            <Post key={x.id} elemento={x}/>
         ))}
         </div>
     );

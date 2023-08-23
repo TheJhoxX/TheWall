@@ -1,7 +1,7 @@
 const express = require('express')
 const cors = require('cors'); // Importa el paquete cors
-const userController = require('./user.controller')
-const postController = require('./post.controller')
+const controladorUsuarios = require('./controladores/controladorUsuarios')
+const controladorPosts = require('./controladores/controladorPosts')
 
 const PORT = 3001;
 
@@ -11,8 +11,9 @@ app.use(cors())
 
 app.post('/publicarPost', async (req,res) => {
   console.log('SE VA A PUBLICAR EL POST: ' + JSON.stringify(req.body))
-  postController.publicarPost((error,resultados) => {
+  controladorPosts.publicarPost((error,resultados) => {
     if (error) {
+      console.log('Error')
       res.status(500).send('Error al publicar post: ' + error);
     } else {
       //Puedo poner directamente el stringify
@@ -23,7 +24,7 @@ app.post('/publicarPost', async (req,res) => {
 })
 
 app.get('/posts', async(req, res) => {
-  postController.obtenerPosts((error, results) => {
+  controladorPosts.listarPosts((error, results) => {
       if (error) {
           res.status(500).send('Error al obtener posts');
       } else {
@@ -35,7 +36,7 @@ app.get('/posts', async(req, res) => {
 });
 
 app.get('/users', async(req, res) => {
-  userController.mostrarUsuarios((error, results) => {
+  controladorUsuarios.mostrarUsuarios((error, results) => {
       if (error) {
           res.status(500).send('Error al obtener usuarios');
       } else {
@@ -48,7 +49,7 @@ app.get('/users', async(req, res) => {
 
 
 app.post('/registrarUsuario', async (req,res) => {
-  userController.crearUsuario((error,resultados) => {
+  controladorUsuarios.crearUsuario((error,resultados) => {
     if (error) {
       res.status(500).send('Error al crear un usuario: ' + error);
     } else {
@@ -59,7 +60,7 @@ app.post('/registrarUsuario', async (req,res) => {
   }, req.body);
   
 })
-//app.post('/publicarPost', postController.create)
+//app.post('/publicarPost', controladorPosts.create)
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
